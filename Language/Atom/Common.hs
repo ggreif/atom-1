@@ -148,14 +148,14 @@ channel a = do
   hasData <- bool "hasData" False
   return $ Channel a hasData
 
--- | Write data to a 'Channel'.  A write will only suceed if the 'Channel' is
+-- | Write data to a 'Channel'.  A write will only succeed if the 'Channel' is
 -- empty.
 writeChannel :: Channel a -> Atom ()
 writeChannel (Channel _ hasData) = do
   cond $ not_ $ value hasData
   hasData <== true
 
--- | Read data from a 'Channel'.  A read will only suceed if the 'Channel' has
+-- | Read data from a 'Channel'.  A read will only succeed if the 'Channel' has
 -- data to be read.
 readChannel :: Channel a -> Atom a
 readChannel (Channel a hasData) = do
